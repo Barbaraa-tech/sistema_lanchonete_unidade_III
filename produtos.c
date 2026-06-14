@@ -16,6 +16,12 @@ void adicionarProduto(Produto cardapio[], int *totalProdutos)
     printf("Digite o preco do produto: ");
     scanf("%f", &cardapio[*totalProdutos].preco);
 
+    if (cardapio[*totalProdutos].preco < 0)
+    {
+        printf("Preco invalido!\n");
+        return;
+    }
+
     (*totalProdutos)++;
 
     printf("Produto cadastrado com sucesso!\n");
@@ -29,7 +35,7 @@ void listarProdutos(Produto cardapio[], int totalProdutos)
         return;
     }
 
-    printf("\n===== CARDAPIO =====\n");
+    printf("\n======= CARDAPIO =======\n");
 
     for (int i = 0; i < totalProdutos; i++)
     {
@@ -46,18 +52,18 @@ void atualizarProduto(Produto cardapio[], int totalProdutos)
 
     if (totalProdutos == 0)
     {
-        printf("Nao existe produto cadastrado.\n");
+        printf("Nenhum produto cadastrado.\n");
         return;
     }
 
     listarProdutos(cardapio, totalProdutos);
 
-    printf("Digite o codigo do produto que deseja alterar: ");
+    printf("Digite o codigo do produto: ");
     scanf("%d", &codigo);
 
     if (codigo < 1 || codigo > totalProdutos)
     {
-        printf("Produto invalido!\n");
+        printf("Codigo invalido!\n");
         return;
     }
 
@@ -66,6 +72,12 @@ void atualizarProduto(Produto cardapio[], int totalProdutos)
 
     printf("Novo preco: ");
     scanf("%f", &cardapio[codigo - 1].preco);
+
+    if (cardapio[codigo - 1].preco < 0)
+    {
+        printf("Preco invalido!\n");
+        return;
+    }
 
     printf("Produto atualizado com sucesso!\n");
 }
@@ -76,18 +88,18 @@ void removerProduto(Produto cardapio[], int *totalProdutos)
 
     if (*totalProdutos == 0)
     {
-        printf("Nao existe produto cadastrado.\n");
+        printf("Nenhum produto cadastrado.\n");
         return;
     }
 
     listarProdutos(cardapio, *totalProdutos);
 
-    printf("Digite o codigo do produto que deseja remover: ");
+    printf("Digite o codigo para remover: ");
     scanf("%d", &codigo);
 
     if (codigo < 1 || codigo > *totalProdutos)
     {
-        printf("Produto invalido!\n");
+        printf("Codigo invalido!\n");
         return;
     }
 
