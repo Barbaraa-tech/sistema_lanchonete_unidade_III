@@ -9,13 +9,10 @@ typedef struct
     float preco;
 } Produto;
 
-extern Produto cardapio[MAX];
-extern int totalProdutos;
-
-// Funções do sistema
-void adicionarProduto(void);
-void listarProdutos(void);
-void atualizarProduto(void);
-void removerProduto(void);
+/* Funções do sistema */
+void adicionarProduto(Produto cardapio[], int *totalProdutos);
+void listarProdutos(Produto cardapio[], int totalProdutos);
+void atualizarProduto(Produto cardapio[], int totalProdutos);
+void removerProduto(Produto cardapio[], int *totalProdutos);
 
 #endif
