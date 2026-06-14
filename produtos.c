@@ -2,29 +2,26 @@
 #include <string.h>
 #include "produtos.h"
 
-Produto cardapio[MAX];
-int totalProdutos = 0;
-
-void adicionarProduto(void)
+void adicionarProduto(Produto cardapio[], int *totalProdutos)
 {
-    if (totalProdutos >= MAX)
+    if (*totalProdutos >= MAX)
     {
         printf("Limite de produtos atingido.\n");
         return;
     }
 
     printf("Digite o nome do produto: ");
-    scanf(" %[^\n]", cardapio[totalProdutos].nome);
+    scanf(" %[^\n]", cardapio[*totalProdutos].nome);
 
     printf("Digite o preco do produto: ");
-    scanf("%f", &cardapio[totalProdutos].preco);
+    scanf("%f", &cardapio[*totalProdutos].preco);
 
-    totalProdutos++;
+    (*totalProdutos)++;
 
     printf("Produto cadastrado com sucesso!\n");
 }
 
-void listarProdutos(void)
+void listarProdutos(Produto cardapio[], int totalProdutos)
 {
     if (totalProdutos == 0)
     {
@@ -43,11 +40,17 @@ void listarProdutos(void)
     }
 }
 
-void atualizarProduto(void)
+void atualizarProduto(Produto cardapio[], int totalProdutos)
 {
     int codigo;
 
-    listarProdutos();
+    if (totalProdutos == 0)
+    {
+        printf("Nao existe produto cadastrado.\n");
+        return;
+    }
+
+    listarProdutos(cardapio, totalProdutos);
 
     printf("Digite o codigo do produto que deseja alterar: ");
     scanf("%d", &codigo);
@@ -67,27 +70,33 @@ void atualizarProduto(void)
     printf("Produto atualizado com sucesso!\n");
 }
 
-void removerProduto(void)
+void removerProduto(Produto cardapio[], int *totalProdutos)
 {
     int codigo;
 
-    listarProdutos();
+    if (*totalProdutos == 0)
+    {
+        printf("Nao existe produto cadastrado.\n");
+        return;
+    }
+
+    listarProdutos(cardapio, *totalProdutos);
 
     printf("Digite o codigo do produto que deseja remover: ");
     scanf("%d", &codigo);
 
-    if (codigo < 1 || codigo > totalProdutos)
+    if (codigo < 1 || codigo > *totalProdutos)
     {
         printf("Produto invalido!\n");
         return;
     }
 
-    for (int i = codigo - 1; i < totalProdutos - 1; i++)
+    for (int i = codigo - 1; i < *totalProdutos - 1; i++)
     {
         cardapio[i] = cardapio[i + 1];
     }
 
-    totalProdutos--;
+    (*totalProdutos)--;
 
     printf("Produto removido com sucesso!\n");
 }
