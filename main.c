@@ -21,3 +21,60 @@
 *    Responsável por: Documentação, README e vídeo explicativo
 *
 **********************************************************************/
+
+#include <stdio.h>
+#include <locale.h>
+#include "produtos.h"
+
+int main(void)
+{
+    setlocale(LC_ALL, ".UTF8");
+
+    Produto cardapio[MAX];
+    int totalProdutos = 0;
+    int opcao;
+
+    do
+    {
+        printf("\n=================================\n");
+        printf("      SISTEMA DE LANCHONETE\n");
+        printf("=================================\n");
+        printf("1 - Cadastrar produto\n");
+        printf("2 - Listar produtos\n");
+        printf("3 - Atualizar produto\n");
+        printf("4 - Remover produto\n");
+        printf("0 - Sair\n");
+        printf("Escolha uma opcao: ");
+
+        scanf("%d", &opcao);
+
+        switch (opcao)
+        {
+            case 1:
+                adicionarProduto(cardapio, &totalProdutos);
+                break;
+
+            case 2:
+                listarProdutos(cardapio, totalProdutos);
+                break;
+
+            case 3:
+                atualizarProduto(cardapio, totalProdutos);
+                break;
+
+            case 4:
+                removerProduto(cardapio, &totalProdutos);
+                break;
+
+            case 0:
+                printf("Encerrando o sistema...\n");
+                break;
+
+            default:
+                printf("Opcao invalida! Tente novamente.\n");
+        }
+
+    } while (opcao != 0);
+
+    return 0;
+}
