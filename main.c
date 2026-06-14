@@ -33,6 +33,7 @@ int main(void)
     Produto cardapio[MAX];
     int totalProdutos = 0;
     int opcao;
+    char lixo;
 
     do
     {
@@ -46,7 +47,14 @@ int main(void)
         printf("0 - Sair\n");
         printf("Escolha uma opcao: ");
 
-        scanf("%d", &opcao);
+        if (scanf("%d", &opcao) != 1)
+        {
+            while ((lixo = getchar()) != '\n' && lixo != EOF);
+
+            printf("Entrada invalida! Digite apenas numeros.\n");
+            opcao = -1;
+            continue;
+        }
 
         switch (opcao)
         {
@@ -57,7 +65,6 @@ int main(void)
             case 2:
                 listarProdutos(cardapio, totalProdutos);
                 break;
-
             case 3:
                 atualizarProduto(cardapio, totalProdutos);
                 break;
@@ -71,7 +78,7 @@ int main(void)
                 break;
 
             default:
-                printf("Opcao invalida! Tente novamente.\n");
+                printf("Opcao invalida! Escolha uma opcao entre 0 e 4.\n");
         }
 
     } while (opcao != 0);
