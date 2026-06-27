@@ -44,5 +44,4 @@ Após compilar:
 
 ## Link do Vídeo de Apresentação
 
-Adicionar o link do vídeo aqui:
-(Colar o link do YouTube não listado ou Google Drive público)
+https://drive.google.com/file/d/1IUHmde0Vo_cxRzBcsrQZpESjMLJOPtdJ/view?usp=sharing
